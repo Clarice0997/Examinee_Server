@@ -5,8 +5,8 @@ import com.example.examinee_server.service.UserService;
 import com.example.examinee_server.utils.Bridge;
 import com.example.examinee_server.utils.Login;
 import com.example.examinee_server.utils.Result;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/apis/user")
 public class UserController {
     // 注入Service
@@ -23,6 +22,7 @@ public class UserController {
 
     // 登录接口
     @PostMapping("/login")
+    @ApiOperation(value = "学生登录")
     public Result login(Student student, HttpServletResponse response){
         Login login = userService.login(student);
         if (login.getCode() == 200) {
@@ -35,6 +35,7 @@ public class UserController {
     }
     // 注册接口
     @PostMapping("/register")
+    @ApiOperation(value = "学生注册")
     public Result register(Student student, HttpServletResponse response){
         Bridge bridge = userService.register(student);
         if (bridge.getCode() == 200) {

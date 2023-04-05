@@ -56,20 +56,16 @@ public class UserService {
         // 根据学号获取学生信息
         Student saveStudent = userMapper.getUser(student.getStudentId());
         // 判断学生是否存在
-        if(saveStudent != null && saveStudent.getId() == null){
+        if(saveStudent == null || saveStudent.getId() == null){
             System.out.println("用户不存在");
             login.setCode(404);
-            login.setMessage("学号不存在");
+            login.setMessage("学号密码错误");
             return login;
         }
         // 判断账号密码是否相同
         // 获取密码
         String savePassword = student.getPassword();
         String originPassword = saveStudent.getPassword();
-
-        System.out.println(originPassword);
-        System.out.println(savePassword);
-        System.out.println(bCryptPasswordEncoder.matches(savePassword, originPassword));
 
         if (bCryptPasswordEncoder.matches(savePassword, originPassword)) {
 //            String token = JWTUtils.generateToken(account);

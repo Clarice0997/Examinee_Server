@@ -23,20 +23,21 @@ public class UserController {
     // 登录接口
     @PostMapping("/login")
     @ApiOperation(value = "学生登录")
-    public Result login(Student student, HttpServletResponse response){
+    public Result login(Student student, HttpServletResponse response) {
         Login login = userService.login(student);
         if (login.getCode() == 200) {
             response.setStatus(login.getCode());
-            return Result.ok(login.getCode()).data("token", login.getToken()).data("message","登录成功");
+            return Result.ok(login.getCode()).data("token", login.getToken()).data("message", "登录成功");
         } else {
             response.setStatus(login.getCode());
             return Result.error(login.getCode()).data("message", login.getMessage());
         }
     }
+
     // 注册接口
     @PostMapping("/register")
     @ApiOperation(value = "学生注册")
-    public Result register(Student student, HttpServletResponse response){
+    public Result register(Student student, HttpServletResponse response) {
         Bridge bridge = userService.register(student);
         if (bridge.getCode() == 200) {
             response.setStatus(bridge.getCode());

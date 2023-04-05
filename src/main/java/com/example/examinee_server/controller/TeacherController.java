@@ -22,11 +22,11 @@ public class TeacherController {
     // 登录接口
     @PostMapping("/login")
     @ApiOperation(value = "教师登录")
-    public Result login(Teacher teacher, HttpServletResponse response){
+    public Result login(Teacher teacher, HttpServletResponse response) {
         Login login = teacherService.login(teacher);
         if (login.getCode() == 200) {
             response.setStatus(login.getCode());
-            return Result.ok(login.getCode()).data("token", login.getToken()).data("message","登录成功");
+            return Result.ok(login.getCode()).data("token", login.getToken()).data("message", "登录成功");
         } else {
             response.setStatus(login.getCode());
             return Result.error(login.getCode()).data("message", login.getMessage());

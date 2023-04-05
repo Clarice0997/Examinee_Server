@@ -19,10 +19,11 @@ public class UserService {
 
     /**
      * 登录 Service
+     *
      * @param student
      * @return
      */
-    public Login login(Student student){
+    public Login login(Student student) {
         // 构建登录对象
         Login login = new Login();
         // 判断账号是否为空
@@ -54,9 +55,9 @@ public class UserService {
         }
 
         // 根据学号获取学生信息
-        Student saveStudent = userMapper.getUser(student.getStudentId());
+        Student saveStudent = userMapper.getUser(studentId);
         // 判断学生是否存在
-        if(saveStudent == null || saveStudent.getId() == null){
+        if (saveStudent == null || saveStudent.getId() == null) {
             System.out.println("用户不存在");
             login.setCode(404);
             login.setMessage("学号密码错误");
@@ -82,10 +83,11 @@ public class UserService {
 
     /**
      * 注册 Service
+     *
      * @param student
      * @return
      */
-    public Bridge register(Student student){
+    public Bridge register(Student student) {
         // 构建通信对象
         Bridge bridge = new Bridge();
         // 判断学号是否为空

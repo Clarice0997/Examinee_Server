@@ -12,7 +12,7 @@ public class TeacherService {
     @Autowired
     private TeacherMapper teacherMapper;
 
-    public Login login(Teacher teacher){
+    public Login login(Teacher teacher) {
         // 构建登录对象
         Login login = new Login();
         // 判断账号是否为空
@@ -47,7 +47,7 @@ public class TeacherService {
         Teacher saveTeacher = teacherMapper.getTeacher(username);
 
         // 判断教师是否存在
-        if(saveTeacher == null || saveTeacher.getUsername() == null){
+        if (saveTeacher == null || saveTeacher.getUsername() == null) {
             login.setCode(403);
             login.setMessage("账号密码错误");
             return login;
